@@ -14,6 +14,17 @@ public class MascotaDTO implements IObjetoDTO{
     private String edad;
     private String raza;
 
+    public MascotaDTO() {
+    }
+
+    public MascotaDTO(String id, String nombre, String edad, String raza) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.raza = raza;
+    }
+
+    
     public String getId() {
         return id;
     }

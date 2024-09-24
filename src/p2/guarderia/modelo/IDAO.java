@@ -19,7 +19,7 @@ public interface IDAO {
 
     public void actualizar(String id, IObjetoDTO dto)throws Exception;
 
-    public void buscar(String id)throws Exception;
+    public IObjetoDTO buscar(String id)throws Exception;
 
     public ArrayList<IObjetoDTO> listar()throws Exception;
 
