@@ -27,6 +27,11 @@ public class PersonaDTO implements IObjetoDTO{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "" + id + ";" + nombre;
+    }
     
     
 }

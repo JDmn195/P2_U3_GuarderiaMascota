@@ -13,17 +13,10 @@ public class MascotaDTO implements IObjetoDTO{
     private String nombre;
     private String edad;
     private String raza;
+    private PersonaDTO propietario;
 
     public MascotaDTO() {
     }
-
-    public MascotaDTO(String id, String nombre, String edad, String raza) {
-        this.id = id;
-        this.nombre = nombre;
-        this.edad = edad;
-        this.raza = raza;
-    }
-
     
     public String getId() {
         return id;
@@ -55,6 +48,19 @@ public class MascotaDTO implements IObjetoDTO{
 
     public void setRaza(String raza) {
         this.raza = raza;
+    }
+
+    public PersonaDTO getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(PersonaDTO propietario) {
+        this.propietario = propietario;
+    }
+
+    @Override
+    public String toString() {
+        return "" + id + ";" + nombre + ";" + edad + ";" + raza + ";" + propietario;
     }
     
            

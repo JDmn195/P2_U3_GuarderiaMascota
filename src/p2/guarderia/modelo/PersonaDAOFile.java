@@ -28,7 +28,7 @@ public class PersonaDAOFile implements IDAO {
     }
 
     @Override
-    public void buscar(String id) {
+    public IObjetoDTO buscar(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
