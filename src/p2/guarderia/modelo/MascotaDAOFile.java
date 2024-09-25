@@ -4,7 +4,6 @@
  */
 package p2.guarderia.modelo;
 
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -25,9 +24,10 @@ public class MascotaDAOFile implements IDAO {
     @Override
     public void agregar(IObjetoDTO dto) {
         String rutaArchivo = "mascotas.csv";
+        MascotaDTO dto1 = (MascotaDTO)dto;
         try (BufferedWriter escritor = new BufferedWriter(new FileWriter(rutaArchivo))) {
 
-            escritor.write(dto.toString());
+            escritor.write(dto1.toString());
             escritor.newLine();
 
         } catch (IOException e) {
@@ -37,7 +37,7 @@ public class MascotaDAOFile implements IDAO {
 
     @Override
     public void eliminar(String id) throws Exception {
-        IObjetoDTO dto = buscar(id);
+        MascotaDTO dto = (MascotaDTO)buscar(id);
         String archivoCSV = "mascotas.csv";
         String archivoTemp = "mascotas_temp.csv";
         String valorAEliminar = dto.toString();
@@ -65,12 +65,12 @@ public class MascotaDAOFile implements IDAO {
 
     @Override
     public void actualizar(String id, IObjetoDTO dto) {
-        IObjetoDTO lineaAntigua = buscar(id);
+        MascotaDTO lineaAntigua = (MascotaDTO)buscar(id);
 
         String archivoCSV = "mascotas.csv";
         String archivoTemp = "mascotas_temp.csv";
-        String valorBuscado = lineaAntigua.toString();  // La línea que contiene "Juan" es la que queremos modificar
-        String nuevaLinea = dto.toString();  // La nueva línea que reemplazará a la línea original
+        String valorBuscado = lineaAntigua.toString();  
+        String nuevaLinea = dto.toString();  
 
         try {
             List<String> lineas = Files.readAllLines(Paths.get(archivoCSV));
@@ -106,19 +106,16 @@ public class MascotaDAOFile implements IDAO {
             String linea;
 
             while ((linea = lector.readLine()) != null) {
-                // Dividir la línea en partes usando ";" como delimitador
                 String[] partes = linea.split(";");
 
-                // Verificamos si la primera columna (id) coincide con el idBuscado
                 int idCsv = Integer.parseInt(partes[0]);
                 if (idCsv == Integer.parseInt(id)) {
-                    // Crear un objeto Persona con los datos de la línea
                     dto = new MascotaDTO();
                     dto.setId(id);
                     dto.setNombre(partes[1]);
                     dto.setEdad(partes[2]);
                     dto.setRaza(partes[3]);
-                    break;  // Salir del bucle una vez que encontramos la persona
+                    break;  
                 }
             }
         } catch (IOException e) {
@@ -137,7 +134,7 @@ public class MascotaDAOFile implements IDAO {
             String linea;
 
             while ((linea = lector.readLine()) != null) {
-                // Dividir la línea en partes usando ";" como delimitador
+
                 String[] partes = linea.split(";");
                 dto = new MascotaDTO();
                 dto.setId(partes[0]);
